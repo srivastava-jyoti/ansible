@@ -1,0 +1,9 @@
+- hosts: webservers
+  become: true
+  tasks:
+    - name: Run npm install in /opt/PAAR/paar-backend
+      command: npm install --force
+      args:
+        chdir: /opt/PAAR/paar-backend
+        executable: ~/.nvm/versions/node/v16.13.2/bin/npm
+      state: present

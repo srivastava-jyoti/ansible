@@ -1,0 +1,27 @@
+---
+- hosts: webservers
+  become: true
+  tasks:
+    - name: Ensure the "author" field is removed from package.json
+      lineinfile:
+        path: /opt/PAAR/paar-backend/package.json
+        state: absent
+        regexp: '"author": {'
+
+    - name: Ensure the "name" field inside "author" is removed
+      lineinfile:
+        path: /opt/PAAR/paar-backend/package.json
+        state: absent
+        regexp: '"name": "karan khanna",'
+
+    - name: Ensure the "email" field inside "author" is removed
+      lineinfile:
+        path: /opt/PAAR/paar-backend/package.json
+        state: absent
+        regexp: '"email": "karan@khanna.io"'
+
+    - name: Ensure the closing brace of "author" field is removed
+      lineinfile:
+        path: /opt/PAAR/paar-backend/package.json
+        state: absent
+        regexp: '},'
