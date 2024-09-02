@@ -1,4 +1,3 @@
----
 - hosts: webservers
   become: true
   tasks:
@@ -6,6 +5,7 @@
       service:
         name: nginx
         state: stopped
+      become: yes
       notify: Run certbot
 
     - name: Run certbot command to obtain SSL certificate
@@ -19,13 +19,14 @@
       service:
         name: nginx
         state: started
+      become: yes
 
   handlers:
     - name: Run certbot
       meta: noop
-      notify: Run certbot
 
     - name: Start Nginx
       service:
         name: nginx
         state: started
+      become: yes
